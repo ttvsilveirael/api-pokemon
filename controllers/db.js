@@ -2,6 +2,15 @@ const bluebird = require('bluebird')
 const mysql = require('mysql2/promise')
 const dbObject = require("../model/dbObject");
 
+conObject =
+{
+    host: 'localhost',
+    user: 'root',
+    password: "Test@123",
+    database: "pokemonbatle",
+    Promise: bluebird
+}
+
 
 class database {
     static async createDatabase() {
@@ -21,18 +30,12 @@ class database {
        * @param columns Colunas em formato dbObject 
      */
     static async createTable(name, columns) {
-        const connection = await mysql.createConnection({
-            host: 'localhost',
-            user: 'root',
-            password: "Test@123",
-            database: "pokemonbatle",
-            Promise: bluebird
-        });
+        const connection = await mysql.createConnection(conObject);
         let sqlColumns = this.convertColumns(columns);
         let ret = await connection.execute(`create table ${name} ${sqlColumns}`);
         return true;
     }
-    
+
     /**
      * Cria uma string a partir do objeto dbObject para nova tabela no banco.
      *
@@ -51,9 +54,28 @@ class database {
             })
 
             this.sqltext += ')';
-            return  this.sqltext;
+            return this.sqltext;
         }
     }
+
+    static async insert(table, columns, values) {
+        const connection = await mysql.createConnection(conObject);
+        const [rows, fields] = await connection.execute(`insert into ${table} (${columns}) values (${values})`);
+        return rows;
+    }
+
+    static async delete(table, id) {
+        const connection = await mysql.createConnection(conObject);
+        const [rows, field] = await connection.execute(`delete from ${table} where id = ${id}`);
+        return rows;
+    }
+
+    static async deleteAll(table) {
+        const connection = await mysql.createConnection(conObject);
+        const [rows, field] = await connection.execute(`delete from ${table}`);
+        return rows;
+    }
+
 }
 
 module.exports = database

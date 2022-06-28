@@ -21,19 +21,19 @@ class Card {
         weekness,
         strength
     ) {
-        id = id;
-        nome = nome;
-        type = type;
-        image = image;
-        hp = hp;
-        atk = atk;
-        def = def;
-        weekness = weekness;
-        strength = strength;
+        this.id = id;
+        this.nome = nome;
+        this.type = type;
+        this.image = image;
+        this.hp = hp;
+        this.atk = atk;
+        this.def = def;
+        this.weekness = weekness;
+        this.strength = strength;
 
     }
 
-    static getDbObject(){
+    static getDbObject() {
         return [
             new dbObject('ID', 'INT', true, true),
             new dbObject('NOME', 'VARCHAR(250)', false, false),
