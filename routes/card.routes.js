@@ -26,6 +26,22 @@ class CardRoutes {
         handler: async (request, reply) => {
             return CardController.deleteCard(null)
         }
+    }
+        , {
+        method: 'GET',
+        url: '/card',
+        handler: async (request, reply) => {
+            return CardController.getCard(null)
+        }
+
+    }
+        , {
+        method: 'GET',
+        url: '/card/:id',
+        handler: async (request, reply) => {
+            let id = request.params['id'];
+            return CardController.getCard(id)
+        }
 
     }]
 }

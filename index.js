@@ -1,7 +1,5 @@
 const fastify = require('fastify')({ logger: true })
 const cors = require("fastify-cors")
-const database = require('./controllers/db')
-const Card = require('./model/card')
 const CardRoutes = require('./routes/card.routes')
 fastify.register(cors, {
     origin: true

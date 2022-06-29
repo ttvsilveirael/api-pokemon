@@ -1,6 +1,5 @@
 const bluebird = require('bluebird')
 const mysql = require('mysql2/promise')
-const dbObject = require("../model/dbObject");
 
 conObject =
 {
@@ -73,6 +72,18 @@ class database {
     static async deleteAll(table) {
         const connection = await mysql.createConnection(conObject);
         const [rows, field] = await connection.execute(`delete from ${table}`);
+        return rows;
+    }
+
+    static async getCard(table, id) {
+        const connection = await mysql.createConnection(conObject);
+        const [rows, field] = await connection.execute(`SELECT * from ${table} WHERE ID = ${id}`);
+        return rows;
+    }
+
+    static async getCard(table) {
+        const connection = await mysql.createConnection(conObject);
+        const [rows, field] = await connection.execute(`SELECT * from ${table}`);
         return rows;
     }
 
