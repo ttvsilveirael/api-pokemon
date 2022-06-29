@@ -4,7 +4,7 @@ const CardController = require("../controllers/card.controller");
 module.exports = async function (fastify, opts) {
     fastify.get('/', async (request, reply) => '');
 
-    fastify.get('/card', async (req, rep) => await CardController.getCard(null));
+    fastify.get('/card', async (req, rep) => await CardController.getCard());
     fastify.get('/card/:id', async (req, rep) => await CardController.getCard(req.params['id']));
 
     fastify.put('/card', async (req, rep) => await CardController.insertCard(req));
