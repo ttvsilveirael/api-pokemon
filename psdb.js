@@ -1,6 +1,3 @@
-
-require('dotenv').config()
-const { cli } = require('fastify-cli/start');
 const { Client } = require('pg');
 
 const client = new Client({

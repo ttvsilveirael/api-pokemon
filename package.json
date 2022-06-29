@@ -4,12 +4,10 @@
   "description": "Api pokemon live",
   "main": "server.js",
   "scripts": {
-    "test": "tap test/**/*.test.js",
-    "start": "node server.js",
-    "dev": "fastify start -w -l info -P app.js"
+    "start": "node index.js"
   },
   "author": "Eduardo Silveira",
-  "license": "ISC",
+  "license": "MIT",
   "dependencies": {
     "bluebird": "^3.7.2",
     "dotenv": "^16.0.1",
@@ -20,5 +18,13 @@
     "fastify-plugin": "^3.0.1",
     "mysql2": "^2.3.3",
     "pg": "^8.7.3"
+  },
+  "keywords": [
+    "node",
+    "heroku"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/ttvsilveirael/api-pokemon.git"
   }
 }

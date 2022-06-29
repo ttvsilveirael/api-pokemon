@@ -1,5 +1,5 @@
 'use strict'
-
+const PORT = process.env.PORT || 5000
 // Read the .env file.
 require('dotenv').config()
 
@@ -11,15 +11,8 @@ const app  = Fastify({
     logger: true,
     pluginTimeout: 10000
 });
-
 // Register your application as a normal plugin.
 app.register(require('./app.js'))
 
 // Start listening.
-app.listen(process.env.PORT || 5000, '0.0.0.0', (err) => {
-    console.log(process.env);
-    if (err) {
-        app.log.error(err)
-        process.exit(1)
-    }
-})
+app.listen(`${PORT}`)
