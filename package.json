@@ -4,7 +4,9 @@
   "description": "Api pokemon live",
   "main": "index.js",
   "scripts": {
-    "start": "npm install && node index.js"
+    "test": "tap test/**/*.test.js",
+    "start": "node server.js",
+    "dev": "fastify start -w -l info -P app.js"
   },
   "author": "Eduardo Silveira",
   "license": "MIT",
