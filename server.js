@@ -3,7 +3,6 @@ require('dotenv').config()
 
 // Require the framework
 const Fastify = require('fastify')
-const cors = require("fastify-cors")
 
 // Instantiate Fastify with some config
 const app = Fastify({
@@ -15,8 +14,7 @@ const app = Fastify({
 fastify.get('/', async function (request, reply) {
     return { hello: 'world' }
 })
-app.listen(process.env.PORT || 3000, '0.0.0.0', (err) => {
-
+app.listen(process.env.PORT || 5000, '0.0.0.0', (err) => {
     if (err) {
         app.log.error(err)
         process.exit(1)
