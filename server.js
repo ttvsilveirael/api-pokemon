@@ -1,6 +1,6 @@
 'use strict'
 
-const PORT = process.env.PORT || 5000
+const port = process.env.PORT || 5000
 
 // Require the framework
 const Fastify = require('fastify')
@@ -14,4 +14,7 @@ const app = Fastify({
 app.register(require('./app.js'))
 
 // Start listening.
-app.listen({port: PORT, callback: () => console.log("Runing")});
+console.log(process.env.PORT);
+console.log(process.env);
+console.log(`v` + port);
+app.listen({ port: port, host: `0.0.0.0` });
