@@ -21,4 +21,3 @@ const app = Fastify({
             process.exit(1)
         }
     })
-CardRoutes.routes.forEach(route => app.route(route));

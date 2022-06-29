@@ -2,9 +2,7 @@
 require('dotenv').config()
 const { cli } = require('fastify-cli/start');
 const { Client } = require('pg');
-// Read the .env file.
 
-console.log(process.env.DATABASE_URL);
 const client = new Client({
     connectionString: 'postgres://hkwtiotatxxmxr:f4e432427a15be5992a23a6ac3e5dfa86cb01120deec8b723f7aea0fe5a99643@ec2-18-204-142-254.compute-1.amazonaws.com:5432/de8tbl1iclsprp',
     ssl: {
@@ -65,10 +63,7 @@ class psdatabase {
         return response;
     }
 }
-// insert into 
-// cards (nome, type, image, hp, atk, def,weekness,strength) 
-// values ("Absol G", "Darkness", "https://images.pokemontcg.io/pl3/1_hires.png", "hp", "45", "50",
-//             "Fighting", "Psychic")
+
 /**
    * Cria uma string a partir do objeto dbObject para nova tabela no banco.
    *
@@ -90,23 +85,5 @@ function convertColumns(columns) {
     }
 }
 
-
-// client.query('SELECT NOW()', (err, res) => {
-//     if (err) throw err;
-//     for (let row of res.rows) {
-//         console.log(JSON.stringify(row));
-//     }
-//     client.end();
-// });
-
-// static async createDatabase() {
-//     const connection = await mysql.createConnection({
-//         host: 'localhost',
-//         user: 'root',
-//         password: "Test@123",
-//         Promise: bluebird
-//     });
-//     connection.execute('create database pokemonbatle');
-// }
 
 module.exports = psdatabase
