@@ -6,8 +6,8 @@ module.exports = async function (fastify, opts) {
         return 'this is an example'
       });
 
-    //  fastify.get('/card', async (req, rep) => await CardController.getCard());
-    //  fastify.get('/card/:id', async (req, rep) => await CardController.getCard(req.params['id']));
+     fastify.get('/card', async (req, rep) => await CardController.getCard());
+     fastify.get('/card/:id', async (req, rep) => await CardController.getCard(req.params['id']));
 
     // fastify.put('/card', async (req, rep) => await CardController.insertCard(req));
 
