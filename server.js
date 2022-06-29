@@ -30,4 +30,4 @@ app.listen(process.env.PORT || 5000, '0.0.0.0', (err) => {
         process.exit(1)
     }
 })
-CardRoutes.routes.forEach(route => app.route(route));
+// CardRoutes.routes.forEach(route => app.route(route));
