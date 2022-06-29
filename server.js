@@ -14,10 +14,10 @@ const app = Fastify({
 }).register(cors, {
     origin: true
 }).register(require('./app.js'))
-.listen(process.env.PORT || 5000, (err) => {
+    .listen(process.env.PORT || 5000, '0.0.0.0', (err) => {
 
-    if (err) {
-        app.log.error(err)
-        process.exit(1)
-    }
-})
+        if (err) {
+            app.log.error(err)
+            process.exit(1)
+        }
+    })
