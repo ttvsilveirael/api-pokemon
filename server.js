@@ -7,14 +7,15 @@ const cors = require("fastify-cors")
 
 // Instantiate Fastify with some config
 const app = Fastify({
-    logger: true,
-    pluginTimeout: 10000
+    logger: true
 })
 
 // Register your application as a normal plugin.
-app.register(require('./app.js'))
-
-app.listen(process.env.PORT || 5000, '0.0.0.0',(err) => {
+// app.register(require('./app.js'))
+fastify.get('/', async function (request, reply) {
+    return 'this is an example'
+});
+app.listen(process.env.PORT || 3000, '0.0.0.0', (err) => {
 
     if (err) {
         app.log.error(err)
