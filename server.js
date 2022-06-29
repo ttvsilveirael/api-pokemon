@@ -1,5 +1,3 @@
-'use strict'
-
 // Read the .env file.
 require('dotenv').config()
 
