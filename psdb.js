@@ -9,6 +9,13 @@ const client = new Client({
         rejectUnauthorized: false
     }
 });
+const pg = require('pg')
+const pool = new pg.Pool({
+    connectionString: 'postgres://hkwtiotatxxmxr:f4e432427a15be5992a23a6ac3e5dfa86cb01120deec8b723f7aea0fe5a99643@ec2-18-204-142-254.compute-1.amazonaws.com:5432/de8tbl1iclsprp',
+    ssl: {
+        rejectUnauthorized: false
+    }
+});
 
 class psdatabase {
     /**
@@ -18,73 +25,45 @@ class psdatabase {
        * @param columns Colunas em formato dbObject 
      */
     static async createTable(name, columns) {
-        client.connect();
-        let sqlColumns = convertColumns(columns);
-        client.query(`create table ${name} ${sqlColumns}`, (err, res) => {
-            if (err) throw err;
-            client.end();
-        });
-        return true;
+        let conn = await pool.connect();
+        const res = await conn.query(`create table ${name} ${sqlColumns}`);
+        conn.end();
+        return res.rows;
     }
 
     static async insert(table, columns, values) {
-        client.connect();
-        let response = [];
-        let rows = [];
-        rows = (await client.query(`INSERT INTO ${table} (${columns}) VALUES (${values})`)).rows;
-        client.end();
-        for (let row of rows) {
-            response.push(row);
-        }
-        return response;
+        let conn = await pool.connect();
+        const res = await conn.query(`INSERT INTO ${table} (${columns}) VALUES (${values})`);
+        conn.end();
+        return res.rows;
     }
 
     static async get(table, id) {
-        client.connect();
-        let response = [];
-        let rows = [];
-        rows = (await client.query(`SELECT * FROM ${table} WHERE ID = ${id}`)).rows;
-        client.end();
-        for (let row of rows) {
-            response.push(row);
-        }
-        return response;
+        let conn = await pool.connect();
+        const res = await conn.query(`SELECT * FROM ${table} WHERE ID = ${id}`);
+        conn.end();
+        return res.rows;
     }
 
     static async get(table) {
-        client.connect();
-        let response = [];
-        let rows = [];
-        rows = (await client.query(`SELECT * FROM ${table}`)).rows;
-        client.end();
-        for (let row of rows) {
-            response.push(row);
-        }
-        return response;
+        let conn = await pool.connect();
+        const res = await conn.query(`SELECT * FROM ${table}`);
+        conn.end();
+        return res.rows;
     }
 
     static async delete(table, id) {
-        client.connect();
-        let response = [];
-        let rows = [];
-        rows = (await client.query(`DELETE FROM ${table} WHERE ID = ${id}}`)).rows;
-        client.end();
-        for (let row of rows) {
-            response.push(row);
-        }
-        return response;
+        let conn = await pool.connect();
+        const res = await conn.query(`DELETE FROM ${table} WHERE ID = ${id}}`);
+        conn.end();
+        return res.rows;
     }
-    
+
     static async delete(table) {
-        client.connect();
-        let response = [];
-        let rows = [];
-        rows = (await client.query(`DELETE FROM ${table}`)).rows;
-        client.end();
-        for (let row of rows) {
-            response.push(row);
-        }
-        return response;
+        let conn = await pool.connect();
+        const res = await conn.query(`DELETE FROM ${table}`);
+        conn.end();
+        return res.rows;
     }
 }
 

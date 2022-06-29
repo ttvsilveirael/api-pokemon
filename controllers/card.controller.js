@@ -1,4 +1,5 @@
 const psdatabase = require("../psdb");
+const Card = require("../model/card");
 
 class CardController {
 
@@ -14,15 +15,14 @@ class CardController {
 
     static async deleteCard(id) {
         if (id == null)
-            return await psdatabase.delete('cards');
-        return await psdatabase.delete('cards', id);
+            return await psdatabase.delete('cards')
+        return await psdatabase.delete('cards', id)
     }
 
     static async getCard(id) {
-        if (id == null) {
-            return await psdatabase.get('cards');
-        }
-        return await psdatabase.get('cards', id);
+        if (id == null)
+            return await psdatabase.get('cards')
+        return await psdatabase.get('cards', id)
     }
 }
 
