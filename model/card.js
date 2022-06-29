@@ -35,7 +35,7 @@ class Card {
 
     static getDbObject() {
         return [
-            new dbObject('ID', 'INT', true, true),
+            new dbObject('ID', 'SERIAL', true, true),
             new dbObject('NOME', 'VARCHAR(250)', false, false),
             new dbObject('TYPE', 'VARCHAR(250)', false, false),
             new dbObject('IMAGE', 'VARCHAR(250)', false, false),
