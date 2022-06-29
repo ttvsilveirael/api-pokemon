@@ -11,7 +11,7 @@ const app = Fastify({
 
 // Register your application as a normal plugin.
 // app.register(require('./app.js'))
-fastify.get('/', async function (request, reply) {
+app.get('/', async function (request, reply) {
     return { hello: 'world' }
 })
 app.listen(process.env.PORT || 5000, '0.0.0.0', (err) => {
