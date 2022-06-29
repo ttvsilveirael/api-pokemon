@@ -1,11 +1,13 @@
 'use strict'
+const CardController = require("../controllers/card.controller");
 
 module.exports = async function (fastify, opts) {
-    fastify.get('/', async function (request, reply) {
-        return { hello: 'world' }
-    })
+    fastify.get('/', async (request, reply) => '');
+
+    fastify.get('/card', async (req, rep) => await CardController.getCard(null));
+
+    fastify.put('/card', async (req, rep) => await CardController.insertCard(request));
 }
-// const CardController = require("../controllers/card.controller");
 // const Card = require("../model/card");
 
 // class CardRoutes {

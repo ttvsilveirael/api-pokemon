@@ -2,7 +2,11 @@ const psdatabase = require("../psdb");
 
 class CardController {
 
-    static async insertCard(newCard) {
+    static async insertCard(request) {
+        let jsonCard = request.body;
+        let newCard = new Card(null, jsonCard['nome'], jsonCard['type'], jsonCard['image'], jsonCard['hp'],
+            jsonCard['atk'], jsonCard['def'], jsonCard['weekness'], jsonCard['strength']);
+            
         return await psdatabase.insert('cards', "nome,type,image,hp,atk,def,weekness,strength",
             `'${newCard.nome}','${newCard.type}','${newCard.image}','${newCard.hp}','${newCard.atk}','${newCard.def}', 
             '${newCard.weekness}','${newCard.strength}'`);
