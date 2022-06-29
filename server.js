@@ -21,7 +21,7 @@ fastify.register(cors, {
 fastify.register(require('./app.js'))
 
 // Start listening.
-fastify.listen(process.env.PORT || 3000, process.env.HOST, (err) => {
+fastify.listen(process.env.PORT || 3000, '0.0.0.0', (err) => {
     if (err) {
         app.log.error(err)
         process.exit(1)
