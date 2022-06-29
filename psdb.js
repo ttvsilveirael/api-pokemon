@@ -1,5 +1,8 @@
+
+require('dotenv').config()
 const { cli } = require('fastify-cli/start');
 const { Client } = require('pg');
+// Read the .env file.
 
 console.log(process.env.DATABASE_URL);
 const client = new Client({
@@ -22,7 +25,6 @@ class psdatabase {
         client.query(`create table ${name} ${sqlColumns}`, (err, res) => {
             if (err) throw err;
             for (let row of res.rows) {
-                console.log(JSON.stringify(row));
             }
             client.end();
         });
@@ -33,7 +35,6 @@ class psdatabase {
         let rows = await client.query(`INSERT INTO ${table} (${columns}) VALUES (${values})`, (err, res) => {
             if (err) throw err;
             for (let row of res.rows) {
-                console.log(JSON.stringify(row));
             }
             client.end();
         });
@@ -42,13 +43,11 @@ class psdatabase {
 
     static async get(table, id) {
         client.connect();
-        console.log(`SELECT * FROM ${table} WHERE ID = ${id}`);
         let response = [];
         let rows = [];
         rows = (await client.query(`SELECT * FROM ${table} WHERE ID = ${id}`)).rows;
         client.end();
         for (let row of rows) {
-            console.log(row);
             response.push(row);
         }
         return response;
@@ -61,7 +60,6 @@ class psdatabase {
         rows = (await client.query(`SELECT * FROM ${table}`)).rows;
         client.end();
         for (let row of rows) {
-            console.log(row);
             response.push(row);
         }
         return response;
