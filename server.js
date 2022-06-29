@@ -8,23 +8,20 @@ const Fastify = require('fastify')
 const cors = require("fastify-cors")
 
 // Instantiate Fastify with some config
-const app = Fastify({
+const fastify = Fastify({
     logger: true,
     pluginTimeout: 10000
 })
 
-const CardRoutes = require('./routes/card.routes')
-app.register(cors, {
+fastify.register(cors, {
     origin: true
 })
 
-CardRoutes.routes.forEach(route => app.route(route));
-
 // Register your application as a normal plugin.
-app.register(require('./app.js'))
+fastify.register(require('./app.js'))
 
 // Start listening.
-app.listen(process.env.PORT || 3000, '0.0.0.0', (err) => {
+fastify.listen(process.env.PORT || 3000, process.env.HOST, (err) => {
     if (err) {
         app.log.error(err)
         process.exit(1)
