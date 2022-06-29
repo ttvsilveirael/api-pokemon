@@ -18,15 +18,14 @@ app.register(cors, {
     origin: true
 })
 
-CardRoutes.routes.forEach(route => app.route(route));
 
 // Register your application as a normal plugin.
 // app.register(require('./app.js'))
 
-// Start listening.
-app.listen(process.env.PORT || 5000, '0.0.0.0', (err) => {
+app.listen(process.env.PORT || 5000, (err) => {
     if (err) {
         app.log.error(err)
         process.exit(1)
     }
 })
+CardRoutes.routes.forEach(route => app.route(route));
