@@ -2,7 +2,7 @@
   "name": "api-pokemon",
   "version": "1.0.0",
   "description": "Api pokemon live",
-  "main": "index.js",
+  "main": "server.js",
   "scripts": {
     "test": "tap test/**/*.test.js",
     "start": "node server.js",
