@@ -17,5 +17,5 @@ app.register(cors, {
 })
 
 // Register your application as a normal plugin.
-// app.register(require('./app.js'));
+app.register(require('./app.js'));
 app.listen(process.env.PORT || 5000, process.env.HOST || "0.0.0.0")
