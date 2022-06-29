@@ -22,21 +22,21 @@ class psdatabase {
         let sqlColumns = convertColumns(columns);
         client.query(`create table ${name} ${sqlColumns}`, (err, res) => {
             if (err) throw err;
-            for (let row of res.rows) {
-            }
             client.end();
         });
         return true;
     }
 
     static async insert(table, columns, values) {
-        let rows = await client.query(`INSERT INTO ${table} (${columns}) VALUES (${values})`, (err, res) => {
-            if (err) throw err;
-            for (let row of res.rows) {
-            }
-            client.end();
-        });
-        return rows;
+        client.connect();
+        let response = [];
+        let rows = [];
+        rows = (await client.query(`INSERT INTO ${table} (${columns}) VALUES (${values})`)).rows;
+        client.end();
+        for (let row of rows) {
+            response.push(row);
+        }
+        return response;
     }
 
     static async get(table, id) {
@@ -56,6 +56,30 @@ class psdatabase {
         let response = [];
         let rows = [];
         rows = (await client.query(`SELECT * FROM ${table}`)).rows;
+        client.end();
+        for (let row of rows) {
+            response.push(row);
+        }
+        return response;
+    }
+
+    static async delete(table, id) {
+        client.connect();
+        let response = [];
+        let rows = [];
+        rows = (await client.query(`DELETE FROM ${table} WHERE ID = ${id}}`)).rows;
+        client.end();
+        for (let row of rows) {
+            response.push(row);
+        }
+        return response;
+    }
+    
+    static async delete(table) {
+        client.connect();
+        let response = [];
+        let rows = [];
+        rows = (await client.query(`DELETE FROM ${table}`)).rows;
         client.end();
         for (let row of rows) {
             response.push(row);
