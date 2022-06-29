@@ -11,13 +11,18 @@ const cors = require("fastify-cors")
 const app = Fastify({
     logger: true,
     pluginTimeout: 10000
-}).register(cors, {
+})
+app.register(cors, {
     origin: true
-}).register(require('./app.js'))
-    .listen(process.env.PORT || 5000, '0.0.0.0', (err) => {
+})
 
-        if (err) {
-            app.log.error(err)
-            process.exit(1)
-        }
-    })
+// Register your application as a normal plugin.
+app.register(require('./app.js'))
+
+app.listen(process.env.PORT || 5000, '0.0.0.0', (err) => {
+
+    if (err) {
+        app.log.error(err)
+        process.exit(1)
+    }
+})
