@@ -40,28 +40,18 @@ class psdatabase {
 
     static async get(table, id) {
         let conn = await pool.connect();
-        const res = await conn.query(`SELECT * FROM ${table} WHERE ID = ${id}`);
-        conn.end();
-        return res.rows;
-    }
-
-    static async get(table) {
-        let conn = await pool.connect();
-        const res = await conn.query(`SELECT * FROM ${table}`);
+        let res;
+        if (id != undefined) res = await conn.query(`SELECT * FROM ${table} WHERE ID = ${id}`);
+        else res = await conn.query(`SELECT * FROM ${table}`);
         conn.end();
         return res.rows;
     }
 
     static async delete(table, id) {
         let conn = await pool.connect();
-        const res = await conn.query(`DELETE FROM ${table} WHERE ID = ${id}}`);
-        conn.end();
-        return res.rows;
-    }
-
-    static async delete(table) {
-        let conn = await pool.connect();
-        const res = await conn.query(`DELETE FROM ${table}`);
+        let res;
+        if (id != undefined) res = await conn.query(`DELETE FROM ${table} WHERE ID = ${id}}`);
+        else res = await conn.query(`DELETE FROM ${table}`);
         conn.end();
         return res.rows;
     }

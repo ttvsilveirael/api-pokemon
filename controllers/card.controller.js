@@ -14,13 +14,13 @@ class CardController {
     }
 
     static async deleteCard(id) {
-        if (id == null)
+        if (id == undefined)
             return await psdatabase.delete('cards')
         return await psdatabase.delete('cards', id)
     }
 
     static async getCard(id) {
-        if (id == null)
+        if (id == undefined)
             return await psdatabase.get('cards')
         return await psdatabase.get('cards', id)
     }
