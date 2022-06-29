@@ -1,3 +1,4 @@
+const { cli } = require('fastify-cli/start');
 const { Client } = require('pg');
 
 console.log(process.env.DATABASE_URL);
@@ -29,8 +30,6 @@ class psdatabase {
     }
 
     static async insert(table, columns, values) {
-        client.connect();
-        console.log(`insert into ${table} (${columns}) values (${values})`);
         let rows = await client.query(`INSERT INTO ${table} (${columns}) VALUES (${values})`, (err, res) => {
             if (err) throw err;
             for (let row of res.rows) {
@@ -39,6 +38,33 @@ class psdatabase {
             client.end();
         });
         return rows;
+    }
+
+    static async get(table, id) {
+        client.connect();
+        console.log(`SELECT * FROM ${table} WHERE ID = ${id}`);
+        let response = [];
+        let rows = [];
+        rows = (await client.query(`SELECT * FROM ${table} WHERE ID = ${id}`)).rows;
+        client.end();
+        for (let row of rows) {
+            console.log(row);
+            response.push(row);
+        }
+        return response;
+    }
+
+    static async get(table) {
+        client.connect();
+        let response = [];
+        let rows = [];
+        rows = (await client.query(`SELECT * FROM ${table}`)).rows;
+        client.end();
+        for (let row of rows) {
+            console.log(row);
+            response.push(row);
+        }
+        return response;
     }
 }
 // insert into 
