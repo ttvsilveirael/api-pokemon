@@ -4,7 +4,7 @@
   "description": "Api pokemon live",
   "main": "server.js",
   "scripts": {
-    "start": "node index.js"
+    "start": "node server.js"
   },
   "author": "Eduardo Silveira",
   "license": "MIT",
