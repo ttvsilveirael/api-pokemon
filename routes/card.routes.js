@@ -1,3 +1,4 @@
+'use strict'
 const CardController = require("../controllers/card.controller");
 
 module.exports = async function (fastify, opts) {

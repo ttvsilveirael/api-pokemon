@@ -1,3 +1,4 @@
+'use strict'
 const psdatabase = require("../psdb");
 const Card = require("../model/card");
 
