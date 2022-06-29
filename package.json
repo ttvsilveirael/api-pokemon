@@ -9,7 +9,7 @@
     "dev": "fastify start -w -l info -P app.js"
   },
   "author": "Eduardo Silveira",
-  "license": "MIT",
+  "license": "ISC",
   "dependencies": {
     "bluebird": "^3.7.2",
     "dotenv": "^16.0.1",
@@ -18,12 +18,7 @@
     "fastify-cli": "^4.2.0",
     "fastify-cors": "^3.0.3",
     "fastify-plugin": "^3.0.1",
-    "heroku": "^7.60.2",
     "mysql2": "^2.3.3",
     "pg": "^8.7.3"
-  },
-  "engines": {
-    "node": "16.x",
-    "npm": "8.5.5"
   }
 }

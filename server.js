@@ -10,9 +10,6 @@ const app = Fastify({
     logger: true,
     pluginTimeout: 10000
 })
-app.register(cors, {
-    origin: true
-})
 
 // Register your application as a normal plugin.
 app.register(require('./app.js'))
