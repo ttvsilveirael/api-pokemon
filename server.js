@@ -22,6 +22,7 @@ fastify.register(require('./app.js'))
 
 // Start listening.
 fastify.listen(process.env.PORT || 3000, '0.0.0.0', (err) => {
+    console.log(process.env);
     if (err) {
         app.log.error(err)
         process.exit(1)
