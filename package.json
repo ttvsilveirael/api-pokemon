@@ -5,7 +5,6 @@
   "main": "index.js",
   "scripts": {
     "test": "tap test/**/*.test.js",
-    "postinstall": "npm run build",
     "start": "node server.js",
     "dev": "fastify start -w -l info -P app.js"
   },
