@@ -24,7 +24,7 @@ CardRoutes.routes.forEach(route => app.route(route));
 // app.register(require('./app.js'))
 
 // Start listening.
-app.listen(process.env.PORT || 3000, (err) => {
+app.listen(process.env.PORT || 5000, (err) => {
     if (err) {
         app.log.error(err)
         process.exit(1)
