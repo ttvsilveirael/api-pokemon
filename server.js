@@ -18,7 +18,4 @@ app.register(cors, {
 app.register(require('./app.js'))
 
 // Start listening.
-console.log(process.env.PORT);
-console.log(process.env);
-console.log(`v` + port);
 app.listen({ port: port, host: `0.0.0.0` });

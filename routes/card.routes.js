@@ -3,7 +3,7 @@ const CardController = require("../controllers/card.controller");
 
 module.exports = async function (fastify, opts) {
   fastify.get('/', async function (request, reply) {
-    return 'this is an example'
+    return ''
   });
 
   fastify.get('/card', async (req, rep) => await CardController.getCard());
