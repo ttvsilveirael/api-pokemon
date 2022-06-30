@@ -47,7 +47,7 @@ class psdatabase {
     static async delete(table, id) {
         let conn = await pool.connect();
         let res;
-        if (id != undefined) res = await conn.query(`DELETE FROM ${table} WHERE ID = ${id}}`);
+        if (id != undefined) res = await conn.query(`DELETE FROM ${table} WHERE ID = ${id}`);
         else res = await conn.query(`DELETE FROM ${table}`);
         conn.end();
         return res.rows;
