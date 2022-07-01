@@ -1,17 +1,30 @@
 'use strict'
-const psdatabase = require("../psdb");
-const Card = require("../model/card");
+const psdatabase = require('../psdb');
+const Card = require('../model/card');
 
 class CardController {
 
+    static cardString(jsonCard) {
+        return `('${jsonCard['nome'].replace("'", '*')}','${jsonCard['type'].replace("'", '*')}','${jsonCard['image'].replace("'", '*')}','${jsonCard['hp'].replace("'", '*')}','${jsonCard['atk'].replace("'", '*')}',
+                '${jsonCard['def'].replace("'", '*')}','${jsonCard['weekness'].replace("'", '*')}','${jsonCard['strength'].replace("'", '*')}')`;
+    }
+
     static async insertCard(request) {
         let jsonCard = request.body;
-        let newCard = new Card(null, jsonCard['nome'], jsonCard['type'], jsonCard['image'], jsonCard['hp'],
-            jsonCard['atk'], jsonCard['def'], jsonCard['weekness'], jsonCard['strength']);
+        if (jsonCard.length > 0) {
+            return await this.insertCards(request);
+        }
+        return await psdatabase.insert('cards', 'nome,type,image,hp,atk,def,weekness,strength', cardString(this.jsonCard));
+    }
 
-        return await psdatabase.insert('cards', "nome,type,image,hp,atk,def,weekness,strength",
-            `"${newCard.nome}","${newCard.type}","${newCard.image}","${newCard.hp}","${newCard.atk}","${newCard.def}", 
-            "${newCard.weekness}","${newCard.strength}"`);
+
+    static async insertCards(request) {
+        let jsonCard = request.body;
+        let cString = '';
+        (jsonCard).forEach((card) => {
+            cString += (cString == '' ? '' : ', ') + this.cardString(card);
+        })
+        return await psdatabase.insert('cards', 'nome,type,image,hp,atk,def,weekness,strength', cString);
     }
 
     static async deleteCard(id) {

@@ -24,14 +24,16 @@ class psdatabase {
     static async createTable(name, columns) {
         let conn = await pool.connect();
         const res = await conn.query(`create table ${name} ${sqlColumns}`);
-        conn.end();
+        conn.release();
         return res.rows;
     }
 
     static async insert(table, columns, values) {
         let conn = await pool.connect();
-        const res = await conn.query(`INSERT INTO ${table} (${columns}) VALUES (${values})`);
-        conn.end();
+        
+        console.log(`INSERT INTO ${table} (${columns}) VALUES ${values}`);
+        const res = await conn.query(`INSERT INTO ${table} (${columns}) VALUES ${values}`);
+        conn.release();
         return res.rows;
     }
 
@@ -40,7 +42,7 @@ class psdatabase {
         let res;
         if (id != undefined) res = await conn.query(`SELECT * FROM ${table} WHERE ID = ${id}`);
         else res = await conn.query(`SELECT * FROM ${table}`);
-        conn.end();
+        conn.release();
         return res.rows;
     }
 
@@ -49,7 +51,7 @@ class psdatabase {
         let res;
         if (id != undefined) res = await conn.query(`DELETE FROM ${table} WHERE ID = ${id}`);
         else res = await conn.query(`DELETE FROM ${table}`);
-        conn.end();
+        conn.release();
         return res.rows;
     }
 }
