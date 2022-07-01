@@ -16,4 +16,4 @@ const app = Fastify({
 app.register(require('./app.js'))
 
 // Start listening.
-app.listen({ port: port });
+app.listen({ port: port, host: '0.0.0.0' });
